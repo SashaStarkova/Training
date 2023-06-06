@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +21,38 @@ namespace training.Pages
     /// </summary>
     public partial class MainPage : Page
     {
+        public static ObservableCollection<Database.Product> products;
+        public static ObservableCollection<Database.Product> productsInCart = new ObservableCollection<Database.Product>();
+        public static Database.BookClubEntities connection = new Database.BookClubEntities();
+        public static Database.Product selectedProduct;
         public MainPage()
         {
             InitializeComponent();
-            Database.BookClubEntities connection = new Database.BookClubEntities();
-            List<Database.Product> products = connection.Product.ToList();
+
+            products = new ObservableCollection<Database.Product>(connection.Product.ToList());
+            ProductList.ItemsSource = products;
             DataContext = this;
+        }
+
+        private void AddToCart_Click(object sender, RoutedEventArgs e)
+        {
+            string product = selectedProduct.Article;
+            productsInCart.Add(connection.Product.Where(x => x.Article == product).FirstOrDefault());
+            if (productsInCart.Count > 0)
+            { Cart.Visibility = Visibility.Visible; }
+        }
+        private void GoToCart(object sender, RoutedEventArgs e)
+        {
+            Classes.PagesNavigate pagesNavigate = new Classes.PagesNavigate();
+            Window CartWindow=pagesNavigate.IsCartWindowExist(productsInCart);
+            
+            CartWindow.ShowDialog();
+
+        }
+
+        private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedProduct = ProductList.SelectedItem as Database.Product;
         }
     }
 }

@@ -24,3 +24,5 @@ C:\Users\HOME\source\repos\training\training\obj\Debug\training.csproj.CoreCompi
 C:\Users\HOME\source\repos\training\training\obj\Debug\training.csproj.CopyComplete
 C:\Users\HOME\source\repos\training\training\obj\Debug\training.exe
 C:\Users\HOME\source\repos\training\training\obj\Debug\training.pdb
+C:\Users\HOME\source\repos\training\training\obj\Debug\Pages\CartWindow.g.cs
+C:\Users\HOME\source\repos\training\training\obj\Debug\Pages\CartWindow.baml

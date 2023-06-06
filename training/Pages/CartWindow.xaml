@@ -1,14 +1,11 @@
-﻿<Page x:Class="training.Pages.MainPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:training.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      MinHeight="450" MinWidth="600"
-      Title="MainPage">
-
+﻿<Window x:Class="training.Pages.CartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:training.Pages"
+        mc:Ignorable="d"
+        Title="Food" Height="450" Width="800" MinHeight="450" MinWidth="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -20,14 +17,14 @@
             <RowDefinition MinHeight="350"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="Cart" Content="Корзина" Height="30" Width="100" Grid.Column="2" Visibility="Collapsed" Click="GoToCart"/>
-        <ListView Grid.Row="1" Grid.Column="1" x:Name="ProductList" Background="{x:Null}" ItemsSource="{Binding products}" BorderBrush="{x:Null}" SelectionChanged="ProductList_SelectionChanged">
+        <Button x:Name="Cart" Content="Корзина" Height="30" Width="100" Grid.Column="2" Visibility="Collapsed"/>
+        <ListView Grid.Row="1" Grid.Column="1" x:Name="ProductList" Background="{x:Null}" ItemsSource="{Binding products}" BorderBrush="{x:Null}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <StackPanel.ContextMenu>
                             <ContextMenu>
-                                <MenuItem x:Name="AddToCart" Header="Добавить в корзину" Click="AddToCart_Click"/>
+                                <MenuItem x:Name="AddToCart" Header="Удалить из корзины"/>
                             </ContextMenu>
                         </StackPanel.ContextMenu>
                         <StackPanel Orientation="Horizontal" Height="100">
@@ -56,4 +53,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
-</Page>
+</Window>

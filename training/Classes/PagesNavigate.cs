@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace training.Classes
     {
         private Pages.StartPage startPage;
         private Pages.MainPage mainPage;
+        private Pages.CartWindow cartWindow;
 
         public Pages.StartPage IsStartPageExist()
         {
@@ -27,6 +29,15 @@ namespace training.Classes
                 return mainPage;
             }
             return mainPage = new Pages.MainPage();
+        }
+
+        public Pages.CartWindow IsCartWindowExist(ObservableCollection<Database.Product> products)
+        {
+            if (cartWindow != null)
+            {
+                return cartWindow;
+            }
+            return cartWindow = new Pages.CartWindow(products);
         }
     }
 }
